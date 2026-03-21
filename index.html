@@ -7,62 +7,45 @@
 
   <!--
   ══════════════════════════════════════════════════════════════════
-   FOLDER STRUCTURE — Keep your files organised like this:
+   FOLDER STRUCTURE
   ──────────────────────────────────────────────────────────────────
    your-website/
-   ├── index.html               ← this file
+   ├── index.html
    └── images/
-       ├── bran-product.jpg     ← Cow Bran Product photo
-       └── bran-bag.jpg         ← Bran Feeder Bag photo
-
-   Image rules:
-   • Recommended size : 800 × 600 px (JPG, under 300 KB)
-   • Any common format works: .jpg  .jpeg  .png  .webp
-   • Replace the filename in src="" if yours is different
+       ├── bran-product.jpeg    ← Cow Bran Product photo
+       └── bran-bag.jpeg        ← Bran Feeder Bag photo
   ══════════════════════════════════════════════════════════════════
   -->
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Nunito+Sans:wght@400;600;700;800&family=Tiro+Tamil&display=swap" rel="stylesheet" />
 
   <style>
-    /* ══════════════════════════════════════════════════════════════
-       DESIGN TOKENS — change colours/sizes in one place
-    ══════════════════════════════════════════════════════════════ */
+    /* ══ DESIGN TOKENS ══════════════════════════════════════════ */
     :root {
-      /* greens */
       --g900: #1b4d1b;
       --g700: #2d6a2d;
       --g500: #3d8b3d;
       --g100: #e8f2e8;
       --g050: #f2f8f2;
-      /* browns / earth */
       --b700: #6b3e1e;
       --b100: #f5ede4;
-      /* accent gold */
       --gold: #d4a017;
-      --gold-light: #fff8e1;
-      /* neutrals */
       --white: #ffffff;
       --cream: #faf8f4;
       --border: #e0dbd3;
       --text: #1a1a1a;
       --text-mid: #444;
       --text-soft: #777;
-      /* whatsapp */
       --wa: #25d366;
       --wa-dk: #128c7e;
-      /* misc */
       --radius: 12px;
       --sh-sm: 0 2px 14px rgba(0,0,0,.07);
       --sh-md: 0 6px 30px rgba(0,0,0,.12);
     }
 
-    /* ══════════════════════════════════════════════════════════════
-       RESET
-    ══════════════════════════════════════════════════════════════ */
+    /* ══ RESET ══════════════════════════════════════════════════ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html  { scroll-behavior: smooth; }
     body  {
@@ -75,7 +58,6 @@
     img { display: block; max-width: 100%; }
     a   { text-decoration: none; color: inherit; }
 
-    /* Tamil mode — switched by JS */
     body.tamil,
     body.tamil h1, body.tamil h2,
     body.tamil p, body.tamil span,
@@ -90,21 +72,17 @@
       padding: 0 20px;
     }
 
-    /* ══════════════════════════════════════════════════════════════
-       ① LANGUAGE TOGGLE BAR  (very top of page)
-    ══════════════════════════════════════════════════════════════ */
+    /* ══ LANGUAGE BAR (top strip) ═══════════════════════════════ */
     .lang-bar {
       background: var(--g900);
       padding: 7px 0;
     }
-
     .lang-bar-inner {
       display: flex;
       align-items: center;
       justify-content: flex-end;
       gap: 10px;
     }
-
     .lang-bar-label {
       font-size: 0.72rem;
       color: rgba(255,255,255,.65);
@@ -113,8 +91,6 @@
       text-transform: uppercase;
       font-family: 'Nunito Sans', sans-serif;
     }
-
-    /* pill toggle */
     .lang-pill {
       display: flex;
       background: rgba(255,255,255,.12);
@@ -123,7 +99,6 @@
       padding: 3px;
       gap: 2px;
     }
-
     .lang-btn {
       font-family: 'Nunito Sans', sans-serif;
       font-size: 0.75rem;
@@ -138,84 +113,48 @@
       transition: background .22s, color .22s;
       white-space: nowrap;
     }
-
     .lang-btn.active {
       background: var(--gold);
       color: var(--g900);
     }
 
-    /* ══════════════════════════════════════════════════════════════
-       ② MAIN HEADER  (business name + tagline — highlighted)
-    ══════════════════════════════════════════════════════════════ */
+    /* ══ HEADER ═════════════════════════════════════════════════ */
     header {
       background: var(--g700);
-      position: sticky;
-      top: 0;
-      z-index: 90;
       box-shadow: 0 3px 16px rgba(0,0,0,.22);
     }
-
-    /* sticky stacking: lang-bar + header together */
-    .sticky-top {
-      position: sticky;
-      top: 0;
-      z-index: 90;
-    }
-
     .header-inner {
       display: flex;
       align-items: center;
-      justify-content: space-between;
       gap: 16px;
       padding: 14px 0;
     }
-
-    /* leaf icon badge */
     .logo-leaf {
       flex-shrink: 0;
-      width: 46px;
-      height: 46px;
+      width: 46px; height: 46px;
       background: var(--gold);
       border-radius: 50% 50% 50% 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       box-shadow: 0 3px 10px rgba(0,0,0,.2);
     }
-
     .logo-leaf svg { width: 24px; height: 24px; fill: var(--g900); }
-
-    /* name + tagline block */
     .logo-text { display: flex; flex-direction: column; gap: 3px; flex: 1; }
 
-    /* ── BUSINESS NAME — highlighted with gold underline + glow ── */
+    /* ── Business name — gold underline highlight ── */
     .logo-name {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(1.05rem, 3.5vw, 1.45rem);
+      font-size: clamp(1.05rem, 3.5vw, 1.55rem);
       font-weight: 700;
       color: var(--white);
       line-height: 1.15;
-      letter-spacing: .2px;
-      /* gold bottom highlight bar */
-      border-bottom: 2px solid var(--gold);
+      border-bottom: 2.5px solid var(--gold);
       padding-bottom: 3px;
       display: inline-block;
-      /* soft text glow */
-      text-shadow: 0 0 18px rgba(212,160,23,.35);
+      text-shadow: 0 0 20px rgba(212,160,23,.4);
     }
+    body.tamil .logo-name { font-family: 'Tiro Tamil', serif; font-size: clamp(1rem, 3.2vw, 1.3rem); }
 
-    body.tamil .logo-name {
-      font-family: 'Tiro Tamil', serif;
-      font-size: clamp(1rem, 3.2vw, 1.3rem);
-    }
-
-    /* ── TAGLINE — highlighted chip style ── */
-    .logo-tagline-wrap {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
-
+    /* ── Tagline — gold chip ── */
     .logo-tagline {
       display: inline-flex;
       align-items: center;
@@ -230,19 +169,10 @@
       border-radius: 999px;
       font-family: 'Nunito Sans', sans-serif;
     }
-
+    .logo-tagline::before { content: '✦'; font-size: 8px; opacity: .8; }
     body.tamil .logo-tagline { font-family: 'Tiro Tamil', serif; letter-spacing: 0; }
 
-    .logo-tagline::before {
-      content: '✦';
-      font-size: 8px;
-      color: var(--gold);
-      opacity: .8;
-    }
-
-    /* ══════════════════════════════════════════════════════════════
-       SHARED SECTION STYLES
-    ══════════════════════════════════════════════════════════════ */
+    /* ══ SHARED SECTION ═════════════════════════════════════════ */
     section { padding: 52px 0; }
 
     .sec-label {
@@ -255,8 +185,7 @@
       margin-bottom: 6px;
       font-family: 'Nunito Sans', sans-serif;
     }
-
-    body.tamil .sec-label { font-family: 'Tiro Tamil', serif; letter-spacing: 0; font-size: 0.74rem; }
+    body.tamil .sec-label { font-family: 'Tiro Tamil', serif; letter-spacing: 0; font-size: .74rem; }
 
     .sec-title {
       font-family: 'Playfair Display', Georgia, serif;
@@ -265,20 +194,16 @@
       line-height: 1.3;
       margin-bottom: 16px;
     }
-
     body.tamil .sec-title { font-family: 'Tiro Tamil', serif; }
 
     .divider {
-      width: 38px;
-      height: 3px;
+      width: 38px; height: 3px;
       border-radius: 2px;
       background: var(--g700);
       margin-bottom: 16px;
     }
 
-    /* ══════════════════════════════════════════════════════════════
-       BUTTONS
-    ══════════════════════════════════════════════════════════════ */
+    /* ══ BUTTONS ════════════════════════════════════════════════ */
     .btn-wa {
       display: inline-flex;
       align-items: center;
@@ -295,7 +220,7 @@
       font-family: inherit;
       box-shadow: 0 4px 16px rgba(37,211,102,.3);
     }
-    .btn-wa:hover { background: var(--wa-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,.35); }
+    .btn-wa:hover { background: var(--wa-dk); transform: translateY(-2px); }
     .btn-wa .ico  { width: 19px; height: 19px; fill: white; flex-shrink: 0; }
 
     .btn-call {
@@ -335,23 +260,18 @@
     .btn-outline:hover .ico { fill: white; }
     .btn-outline .ico { width: 16px; height: 16px; fill: var(--g700); transition: fill .2s; flex-shrink: 0; }
 
-    /* ══════════════════════════════════════════════════════════════
-       ③ HERO SECTION
-    ══════════════════════════════════════════════════════════════ */
+    /* ══ HERO ═══════════════════════════════════════════════════ */
     #hero {
       background: var(--white);
       padding: 46px 0 52px;
       border-bottom: 1px solid var(--border);
     }
-
-    /* ── image grid ── */
     .hero-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       margin-bottom: 34px;
     }
-
     .img-card {
       border-radius: var(--radius);
       overflow: hidden;
@@ -360,62 +280,39 @@
       box-shadow: var(--sh-sm);
       background: var(--g100);
     }
-
-    /* ─────────────────────────────────────────────────────────────
-       IMAGE PATHS
-       ─────────────────────────────────────────────────────────────
-       Place your photos in the  images/  folder next to index.html:
-
-         images/bran-product.jpg   →  Cow Bran Product photo
-         images/bran-bag.jpg       →  Bran Feeder Bag photo
-
-       The <img> tags below already point to those paths.
-       Just drop your photos into the images/ folder and they appear.
-       If your file names are different, update src="" accordingly.
-    ───────────────────────────────────────────────────────────── */
-
     .img-card img {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
       display: block;
       transition: transform .4s ease;
     }
-
     .img-card:hover img { transform: scale(1.04); }
 
-    /* fallback shown when image file is missing */
+    /* shown when photo file is missing */
     .img-fallback {
-      position: absolute;
-      inset: 0;
-      display: flex;
+      position: absolute; inset: 0;
+      display: none;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
+      align-items: center; justify-content: center;
+      gap: 10px;
       background: linear-gradient(145deg, var(--g100), #c8ddc8);
-      pointer-events: none;
     }
+    .img-fallback svg  { width: 42px; height: 42px; fill: var(--g700); opacity: .4; }
+    .img-fallback span { font-size: .7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--g700); opacity: .6; font-family: 'Nunito Sans', sans-serif; }
 
-    .img-fallback svg   { width: 40px; height: 40px; fill: var(--g700); opacity: .4; }
-    .img-fallback span  { font-size: .68rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--g700); opacity: .55; font-family: 'Nunito Sans', sans-serif; }
-
-    /* caption ribbon */
     .img-caption {
       position: absolute;
       bottom: 0; left: 0; right: 0;
-      background: rgba(27,77,27,.84);
+      background: rgba(27,77,27,.85);
       color: var(--white);
-      font-size: .76rem;
+      font-size: .78rem;
       font-weight: 700;
       text-align: center;
       padding: 7px 10px;
       backdrop-filter: blur(2px);
     }
 
-    /* ── hero text ── */
     .hero-text { text-align: center; }
-
     .hero-line {
       font-family: 'Playfair Display', Georgia, serif;
       font-size: clamp(1.3rem, 4vw, 1.75rem);
@@ -423,57 +320,28 @@
       margin-bottom: 24px;
       line-height: 1.4;
     }
-
     body.tamil .hero-line { font-family: 'Tiro Tamil', serif; }
-
     .hero-line .hl { color: var(--g700); }
 
-    /* ══════════════════════════════════════════════════════════════
-       ④ ABOUT SECTION
-    ══════════════════════════════════════════════════════════════ */
+    /* ══ ABOUT ══════════════════════════════════════════════════ */
     #about {
       background: var(--b100);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
-
     #about .divider { background: var(--b700); }
-
-    .about-row {
-      display: flex;
-      gap: 22px;
-      align-items: flex-start;
-    }
-
+    .about-row { display: flex; gap: 22px; align-items: flex-start; }
     .about-icon {
-      flex-shrink: 0;
-      width: 48px; height: 48px;
-      background: var(--g700);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      flex-shrink: 0; width: 48px; height: 48px;
+      background: var(--g700); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
     }
-
     .about-icon svg { width: 24px; height: 24px; fill: white; }
+    .about-body p { font-size: .97rem; color: var(--text-mid); line-height: 1.8; }
 
-    .about-body p {
-      font-size: .97rem;
-      color: var(--text-mid);
-      line-height: 1.8;
-    }
-
-    /* ══════════════════════════════════════════════════════════════
-       ⑤ CONTACT SECTION
-    ══════════════════════════════════════════════════════════════ */
+    /* ══ CONTACT ════════════════════════════════════════════════ */
     #contact { background: var(--white); }
-
-    .ctc-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
+    .ctc-list { display: flex; flex-direction: column; gap: 12px; }
     .ctc-row {
       display: flex;
       align-items: center;
@@ -483,13 +351,7 @@
       border-radius: var(--radius);
       padding: 14px 18px;
     }
-
-    .ci {
-      width: 40px; height: 40px;
-      border-radius: 9px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
+    .ci { width: 40px; height: 40px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .ci.g  { background: var(--g100); }
     .ci.g  .ico { fill: var(--g700); }
     .ci.wa { background: #dcf8c6; }
@@ -497,106 +359,55 @@
     .ci.br { background: var(--b100); }
     .ci.br .ico { fill: var(--b700); }
     .ci .ico { width: 19px; height: 19px; }
-
     .cd { flex: 1; min-width: 0; }
-
     .cd-lbl {
       display: block;
-      font-size: .67rem;
-      font-weight: 800;
-      letter-spacing: 1.4px;
-      text-transform: uppercase;
-      color: var(--text-soft);
-      margin-bottom: 2px;
+      font-size: .67rem; font-weight: 800;
+      letter-spacing: 1.4px; text-transform: uppercase;
+      color: var(--text-soft); margin-bottom: 2px;
       font-family: 'Nunito Sans', sans-serif;
     }
-
     body.tamil .cd-lbl { font-family: 'Tiro Tamil', serif; letter-spacing: 0; font-size: .72rem; }
-
-    .cd-val {
-      font-size: .95rem;
-      font-weight: 700;
-      color: var(--text);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
+    .cd-val { font-size: .95rem; font-weight: 700; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .cd-val a { color: var(--text); transition: color .2s; }
     .cd-val a:hover { color: var(--g700); }
     .cd-act { flex-shrink: 0; }
 
-    /* ══════════════════════════════════════════════════════════════
-       ⑥ MAP SECTION
-    ══════════════════════════════════════════════════════════════ */
-    #map {
-      background: var(--g050);
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-
+    /* ══ MAP ════════════════════════════════════════════════════ */
+    #map { background: var(--g050); border-top: 1px solid var(--border); text-align: center; }
     #map .divider { margin: 0 auto 16px; }
-
     .map-frame {
-      margin-top: 24px;
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--sh-md);
-      height: 270px;
-      background: #c8ddc8;
+      margin-top: 24px; border-radius: var(--radius);
+      overflow: hidden; box-shadow: var(--sh-md);
+      height: 270px; background: #c8ddc8;
     }
-
-    .map-frame iframe {
-      width: 100%; height: 100%;
-      border: none;
-      display: block;
-    }
-
+    .map-frame iframe { width: 100%; height: 100%; border: none; display: block; }
     .map-cta { margin-top: 16px; }
 
-    /* ══════════════════════════════════════════════════════════════
-       ⑦ FOOTER
-    ══════════════════════════════════════════════════════════════ */
+    /* ══ FOOTER ═════════════════════════════════════════════════ */
     footer {
       background: var(--g900);
       color: rgba(255,255,255,.75);
       padding: 28px 0;
       text-align: center;
     }
-
-    .ft-name {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.05rem;
-      color: var(--white);
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
+    .ft-name { font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem; color: var(--white); font-weight: 700; margin-bottom: 4px; }
     body.tamil .ft-name { font-family: 'Tiro Tamil', serif; }
-
     .ft-phone { font-size: .87rem; margin-bottom: 6px; }
     .ft-phone a { color: rgba(255,255,255,.8); font-weight: 600; }
     .ft-phone a:hover { color: var(--white); }
+    .ft-note { font-size: .72rem; color: rgba(255,255,255,.45); }
 
-    .ft-note {
-      font-size: .72rem;
-      color: rgba(255,255,255,.45);
-    }
-
-    /* ══════════════════════════════════════════════════════════════
-       RESPONSIVE
-    ══════════════════════════════════════════════════════════════ */
+    /* ══ RESPONSIVE ═════════════════════════════════════════════ */
     @media (max-width: 560px) {
       section { padding: 44px 0; }
       #hero   { padding: 38px 0 44px; }
       .about-row  { flex-direction: column; gap: 14px; }
       .ctc-row    { flex-wrap: wrap; }
       .cd-act     { width: 100%; }
-      .cd-act .btn-wa,
-      .cd-act .btn-call { width: 100%; justify-content: center; }
+      .cd-act .btn-wa, .cd-act .btn-call { width: 100%; justify-content: center; }
       .hero-grid  { gap: 10px; }
     }
-
     @media (max-width: 380px) {
       .logo-name    { font-size: .95rem; }
       .logo-tagline { font-size: .62rem; }
@@ -607,113 +418,93 @@
 <body>
 
 <!--
-══════════════════════════════════════════════════════════════════
-  ALL EDITABLE TEXT — change everything here in one place
-  en = English content  |  ta = Tamil content
-══════════════════════════════════════════════════════════════════
+════════════════════════════════════════════════════════════════
+  ★  ALL EDITABLE CONTENT — change text here only  ★
+  ────────────────────────────────────────────────────────────
+  ⚠ CRITICAL BUG THAT WAS BREAKING THE SITE:
+     The original WA_HREF string had an illegal line-break
+     inside the quotes. JavaScript does not allow a real
+     newline inside a "…" string — it crashes the entire
+     script and nothing renders. Fixed below by keeping it
+     on a single line.
+════════════════════════════════════════════════════════════════
 -->
 <script>
-/* ══════════════════════════════════════════════════════════════
-   STEP 1 ► Edit business name, tagline, and all page text below
-══════════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   STEP 1 — All page text (English + Tamil)
+═══════════════════════════════════════════════════════════ */
 const CONTENT = {
   en: {
-    /* ── Header ─────────────────────────────── */
     bizName:    "Vellaipasu",
     tagline:    "Quality Cow Bran Manufacturers",
-
-    /* ── Hero ───────────────────────────────── */
     heroLine:   "Fresh & Nutritious Cow Bran",
     cap1:       "Cow Bran Product",
     cap2:       "Bran Feeder Bag",
     waHero:     "Chat on WhatsApp",
-
-    /* ── About ──────────────────────────────── */
     aboutLbl:   "About Us",
     aboutTitle: "Pure Feed for Healthy Cattle",
-    aboutText:  "We manufacture and supply fresh, high-quality cow bran directly to farmers and dairy owners. Naturally rich in fiber — keeping your cattle healthy and productive.", /* EDIT */
-
-    /* ── Contact ────────────────────────────── */
+    aboutText:  "We manufacture and supply fresh, high-quality cow bran directly to farmers and dairy owners. Naturally rich in fiber — keeping your cattle healthy and productive.",
     ctcLbl:     "Contact",
     ctcTitle:   "Get In Touch",
     lblPhone:   "Phone",
     lblWA:      "WhatsApp",
     lblAddr:    "Address",
-    phoneNum:   "+91 9698143752",           /* EDIT */
-    waNum:      "+91 9489466652",           /* EDIT */
-    address:    "Chinnasalem-Kachirapalayam Rd, Chinnasalem, Tamil Nadu 606201", /* EDIT */
+    phoneNum:   "+91 96981 43752",
+    waNum:      "+91 94894 66652",
+    address:    "Chinnasalem-Kachirapalayam Rd, Chinnasalem, Tamil Nadu 606201",
     callBtn:    "Call Now",
     chatBtn:    "Chat Now",
-
-    /* ── Map ────────────────────────────────── */
     mapLbl:     "Location",
     mapTitle:   "Find Us",
     mapBtn:     "View on Google Maps",
-
-    /* ── Footer ─────────────────────────────── */
     ftNote:     "Trusted by farmers across Tamil Nadu."
   },
-
   ta: {
-    /* ── Header ─────────────────────────────── */
     bizName:    "வெள்ளைப்பசு",
     tagline:    "தரமான தவிடு உற்பத்தியாளர்கள்",
-
-    /* ── Hero ───────────────────────────────── */
-    heroLine:   "புதியதும் சத்தானதும் —  தவிடு",
+    heroLine:   "புதியதும் சத்தானதும் — தவிடு",
     cap1:       "தவிடு பொருள்",
     cap2:       "தவிடு மூட்டை",
     waHero:     "வாட்ஸ்அப்பில் தொடர்பு கொள்ளுங்கள்",
-
-    /* ── About ──────────────────────────────── */
     aboutLbl:   "எங்களைப் பற்றி",
     aboutTitle: "ஆரோக்கியமான மாடுகளுக்கு தூய தீவனம்",
     aboutText:  "விவசாயிகளுக்கும் பால் உற்பத்தியாளர்களுக்கும் நேரடியாக புதிய, உயர்தர கோதுமை தவிடு வழங்குகிறோம். இயற்கையான நார்ச்சத்து நிறைந்தது — உங்கள் மாடுகளை ஆரோக்கியமாக வைத்திருக்கும்.",
-
-    /* ── Contact ────────────────────────────── */
     ctcLbl:     "தொடர்பு",
     ctcTitle:   "தொடர்பு கொள்ளுங்கள்",
     lblPhone:   "தொலைபேசி",
     lblWA:      "வாட்ஸ்அப்",
     lblAddr:    "முகவரி",
-    phoneNum:   "+91 98765 43210",
-    waNum:      "+91 98765 43210",
-    address:    " சின்னாசலேம்-கச்சிராபலாயம் ஆர்.டி., சின்னாசலேம், தமிழ்நாடு 606201",
+    phoneNum:   "+91 96981 43752",
+    waNum:      "+91 94894 66652",
+    address:    "சின்னசாலேம்-கச்சிராபாளையம் சாலை, சின்னசாலேம், தமிழ்நாடு 606201",
     callBtn:    "அழைக்கவும்",
     chatBtn:    "இப்போது பேசுங்கள்",
-
-    /* ── Map ────────────────────────────────── */
     mapLbl:     "இருப்பிடம்",
     mapTitle:   "எங்களை கண்டுபிடியுங்கள்",
     mapBtn:     "கூகிள் மேப்பில் பாருங்கள்",
-
-    /* ── Footer ─────────────────────────────── */
     ftNote:     "தமிழ்நாடு முழுவதும் விவசாயிகளால் நம்பப்படுகிறோம்."
   }
 };
 
-/* ══════════════════════════════════════════════════════════════
-   STEP 2 ► Replace with YOUR phone number (no spaces/dashes)
-           Format:  91  +  your 10-digit mobile number
-══════════════════════════════════════════════════════════════ */
-const PHONE_HREF = "tel:+919698143752";          /* EDIT → tel:+91XXXXXXXXXX */
-const WA_HREF    = "https://wa.me/919698143752
-	?text=Hello%2C%20I%20want%20to%20order%20cow%20bran."; /* EDIT → wa.me/91XXXXXXXXXX */
+/* ═══════════════════════════════════════════════════════════
+   STEP 2 — Contact links
+   ⚠ FIX: WA_HREF must be one single line — no line breaks!
+═══════════════════════════════════════════════════════════ */
+const PHONE_HREF = "tel:+919698143752";
+const WA_HREF    = "https://wa.me/919489466652?text=Hello%2C%20I%20want%20to%20order%20cow%20bran.";
 
-/* ══════════════════════════════════════════════════════════════
-   STEP 3 ► Google Maps link for the "View on Google Maps" button
-           Go to maps.google.com → search your address → Share → Copy link
-══════════════════════════════════════════════════════════════ */
-const MAP_HREF = "https://maps.google.com/?q=Erode+Tamil+Nadu"; /* EDIT */
+/* ═══════════════════════════════════════════════════════════
+   STEP 3 — Google Maps button link
+   Go to maps.google.com → your address → Share → Copy link
+═══════════════════════════════════════════════════════════ */
+const MAP_HREF = "https://maps.google.com/?q=Chinnasalem+Kachirapalayam+Rd+Chinnasalem+Tamil+Nadu+606201";
 </script>
 
 
-<!-- ════════════════════════════════════════════════════════════
-     ① LANGUAGE TOGGLE BAR — very top of page
-════════════════════════════════════════════════════════════ -->
+<!-- ① LANGUAGE TOGGLE BAR -->
 <div class="lang-bar">
   <div class="container lang-bar-inner">
-    <span class="lang-bar-label" id="langBarLabel">Language / மொழி</span>
+    <span class="lang-bar-label">Language / மொழி</span>
     <div class="lang-pill" role="group" aria-label="Language selection">
       <button class="lang-btn active" id="btnEn" onclick="setLang('en')">🇬🇧 English</button>
       <button class="lang-btn"        id="btnTa" onclick="setLang('ta')">🇮🇳 தமிழ்</button>
@@ -722,101 +513,67 @@ const MAP_HREF = "https://maps.google.com/?q=Erode+Tamil+Nadu"; /* EDIT */
 </div>
 
 
-<!-- ════════════════════════════════════════════════════════════
-     ② MAIN HEADER — highlighted business name + tagline
-════════════════════════════════════════════════════════════ -->
+<!-- ② HEADER — business name + tagline highlighted -->
 <header>
   <div class="container header-inner">
 
-    <!-- Leaf badge icon -->
     <div class="logo-leaf" aria-hidden="true">
       <svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 008 20C19 20 22 3 22 3c-1 2-8 2-8 2 0 0 5-3 8-3C19.5 2 17 8 17 8z"/></svg>
     </div>
 
-    <!-- Business name + tagline -->
     <div class="logo-text">
-      <!--
-        BUSINESS NAME — highlighted with gold underline + glow
-        Edit value in CONTENT object at top of <script>
-      -->
-      <span class="logo-name" data-k="bizName"></span>
-
-      <!-- TAGLINE — styled as a highlighted chip -->
-      <div class="logo-tagline-wrap">
-        <span class="logo-tagline" data-k="tagline"></span>
-      </div>
+      <span class="logo-name"    data-k="bizName"></span>
+      <span class="logo-tagline" data-k="tagline"></span>
     </div>
 
   </div>
 </header>
 
 
-<!-- ════════════════════════════════════════════════════════════
-     ③ HERO SECTION
-════════════════════════════════════════════════════════════ -->
+<!-- ③ HERO — product images + WhatsApp CTA -->
 <section id="hero">
   <div class="container">
 
-    <!-- ───────────────────────────────────────────────────────
-         PRODUCT IMAGES
-         ───────────────────────────────────────────────────────
-         Your folder structure should look like this:
-
-           your-website/
-           ├── index.html
-           └── images/
-               ├── bran-product.jpg   ← put your product photo here
-               └── bran-bag.jpg       ← put your bag photo here
-
-         The src paths below already match that structure.
-         Just drop your real photos into the images/ folder.
-         If your files have different names, update src="" here.
-    ─────────────────────────────────────────────────────────── -->
     <div class="hero-grid">
 
-      <!-- ── Card 1 : Cow Bran Product ── -->
+      <!--
+        IMAGE 1: Cow Bran Product
+        File path: images/bran-product.jpeg
+        Drop your photo into the images/ folder with that exact name.
+      -->
       <div class="img-card">
-        <!--
-          PATH: images/bran-product.jpg
-          Replace with your actual product photo.
-          Recommended: 800×600 px, JPG, under 300 KB
-        -->
         <img
           src="images/bran-product.jpeg"
           alt="Cow Bran Product"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
         />
-        <!-- Fallback shown if image file is missing -->
-        <div class="img-fallback" style="display:none;">
+        <div class="img-fallback">
           <svg viewBox="0 0 24 24"><path d="M12 3C7 3 3 7 3 12s4 9 9 9 9-4 9-9-4-9-9-9zm1 14h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-          <span>bran-product.jpeg</span>
+          <span>images/bran-product.jpeg</span>
         </div>
         <div class="img-caption" data-k="cap1"></div>
       </div>
 
-      <!-- ── Card 2 : Bran Feeder Bag ── -->
+      <!--
+        IMAGE 2: Bran Feeder Bag
+        File path: images/bran-bag.jpeg
+        Drop your photo into the images/ folder with that exact name.
+      -->
       <div class="img-card">
-        <!--
-          PATH: images/bran-bag.jpg
-          Replace with your actual bag photo.
-          Recommended: 800×600 px, JPG, under 300 KB
-        -->
         <img
           src="images/bran-bag.jpeg"
           alt="Bran Feeder Bag"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
         />
-        <!-- Fallback shown if image file is missing -->
-        <div class="img-fallback" style="display:none;">
+        <div class="img-fallback">
           <svg viewBox="0 0 24 24"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6-2c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm0 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
-          <span>bran-bag.jpeg</span>
+          <span>images/bran-bag.jpeg</span>
         </div>
         <div class="img-caption" data-k="cap2"></div>
       </div>
 
-    </div><!-- /hero-grid -->
+    </div>
 
-    <!-- Hero headline + WhatsApp button -->
     <div class="hero-text">
       <h1 class="hero-line"><span class="hl" data-k="heroLine"></span></h1>
       <a id="waHeroBtn" href="#" class="btn-wa" target="_blank" rel="noopener">
@@ -829,34 +586,25 @@ const MAP_HREF = "https://maps.google.com/?q=Erode+Tamil+Nadu"; /* EDIT */
 </section>
 
 
-<!-- ════════════════════════════════════════════════════════════
-     ④ ABOUT SECTION — Edit text in CONTENT object above
-════════════════════════════════════════════════════════════ -->
+<!-- ④ ABOUT -->
 <section id="about">
   <div class="container">
     <div class="about-row">
-
       <div class="about-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 008 20C19 20 22 3 22 3c-1 2-8 2-8 2 0 0 5-3 8-3C19.5 2 17 8 17 8z"/></svg>
       </div>
-
       <div class="about-body">
         <span class="sec-label" data-k="aboutLbl"></span>
         <div class="divider"></div>
         <h2 class="sec-title" data-k="aboutTitle"></h2>
         <p data-k="aboutText"></p>
       </div>
-
     </div>
   </div>
 </section>
 
 
-<!-- ════════════════════════════════════════════════════════════
-     ⑤ CONTACT SECTION
-     Edit PHONE_HREF and WA_HREF at the top of <script>
-     Edit phone/address text in the CONTENT object above
-════════════════════════════════════════════════════════════ -->
+<!-- ⑤ CONTACT -->
 <section id="contact">
   <div class="container">
 
@@ -866,7 +614,7 @@ const MAP_HREF = "https://maps.google.com/?q=Erode+Tamil+Nadu"; /* EDIT */
 
     <div class="ctc-list">
 
-      <!-- Phone -->
+      <!-- Phone row -->
       <div class="ctc-row">
         <div class="ci g">
           <svg class="ico" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
@@ -883,7 +631,7 @@ const MAP_HREF = "https://maps.google.com/?q=Erode+Tamil+Nadu"; /* EDIT */
         </div>
       </div>
 
-      <!-- WhatsApp -->
+      <!-- WhatsApp row -->
       <div class="ctc-row">
         <div class="ci wa">
           <svg class="ico" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -900,7 +648,7 @@ const MAP_HREF = "https://maps.google.com/?q=Erode+Tamil+Nadu"; /* EDIT */
         </div>
       </div>
 
-      <!-- Address -->
+      <!-- Address row -->
       <div class="ctc-row">
         <div class="ci br">
           <svg class="ico" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
@@ -916,16 +664,7 @@ const MAP_HREF = "https://maps.google.com/?q=Erode+Tamil+Nadu"; /* EDIT */
 </section>
 
 
-<!-- ════════════════════════════════════════════════════════════
-     ⑥ MAP SECTION
-     EDIT the iframe src below:
-       1. Open maps.google.com
-       2. Search your business address
-       3. Click Share → Embed a map
-       4. Copy only the src="…" URL from the code shown
-       5. Paste it inside src="" below
-     EDIT MAP_HREF at the top of <script> for the button link
-════════════════════════════════════════════════════════════ -->
+<!-- ⑥ MAP — replace iframe src with your embed URL -->
 <section id="map">
   <div class="container">
 
@@ -934,13 +673,16 @@ const MAP_HREF = "https://maps.google.com/?q=Erode+Tamil+Nadu"; /* EDIT */
     <h2 class="sec-title" data-k="mapTitle"></h2>
 
     <div class="map-frame">
-      <!-- EDIT: Paste your Google Maps embed src below -->
+      <!--
+        YOUR MAP EMBED — already set to your Street View location.
+        To change: maps.google.com → your address → Share → Embed a map → copy src
+      -->
       <iframe
         src="https://www.google.com/maps/embed?pb=!4v1774077509062!6m8!1m7!1syVA5obhHgn02Ex9cO0NsDw!2m2!1d11.66144780946047!2d78.89876901784748!3f261.49862604621313!4f-1.1168164313222064!5f3.325193203789971"
         allowfullscreen=""
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
-        title="Business Location">
+        title="Vellaipasu Business Location">
       </iframe>
     </div>
 
@@ -955,9 +697,7 @@ const MAP_HREF = "https://maps.google.com/?q=Erode+Tamil+Nadu"; /* EDIT */
 </section>
 
 
-<!-- ════════════════════════════════════════════════════════════
-     ⑦ FOOTER
-════════════════════════════════════════════════════════════ -->
+<!-- ⑦ FOOTER -->
 <footer>
   <div class="container">
     <div class="ft-name"  data-k="bizName"></div>
@@ -967,31 +707,28 @@ const MAP_HREF = "https://maps.google.com/?q=Erode+Tamil+Nadu"; /* EDIT */
 </footer>
 
 
-<!-- ════════════════════════════════════════════════════════════
-     JAVASCRIPT — language engine (do not edit below)
-════════════════════════════════════════════════════════════ -->
+<!-- JAVASCRIPT — language engine -->
 <script>
-  /* Fill every [data-k] element with the right language text */
   function render(lang) {
     const d = CONTENT[lang];
 
-    document.querySelectorAll('[data-k]').forEach(el => {
-      const k = el.getAttribute('data-k');
+    /* fill every data-k element */
+    document.querySelectorAll('[data-k]').forEach(function(el) {
+      var k = el.getAttribute('data-k');
       if (d[k] !== undefined) el.textContent = d[k];
     });
 
-    /* Set all hrefs and link text */
-    document.getElementById('waHeroBtn').href         = WA_HREF;
-    document.getElementById('waContactBtn').href      = WA_HREF;
-    document.getElementById('callBtn').href           = PHONE_HREF;
-    document.getElementById('phoneLink').href         = PHONE_HREF;
-    document.getElementById('phoneLink').textContent  = d.phoneNum;
-    document.getElementById('footerPhone').href       = PHONE_HREF;
-    document.getElementById('footerPhone').textContent= d.phoneNum;
-    document.getElementById('mapBtn').href            = MAP_HREF;
+    /* set hrefs and dynamic link text */
+    document.getElementById('waHeroBtn').href          = WA_HREF;
+    document.getElementById('waContactBtn').href       = WA_HREF;
+    document.getElementById('callBtn').href            = PHONE_HREF;
+    document.getElementById('phoneLink').href          = PHONE_HREF;
+    document.getElementById('phoneLink').textContent   = d.phoneNum;
+    document.getElementById('footerPhone').href        = PHONE_HREF;
+    document.getElementById('footerPhone').textContent = d.phoneNum;
+    document.getElementById('mapBtn').href             = MAP_HREF;
   }
 
-  /* Switch language and update UI */
   function setLang(lang) {
     document.getElementById('btnEn').classList.toggle('active', lang === 'en');
     document.getElementById('btnTa').classList.toggle('active', lang === 'ta');
@@ -1000,7 +737,7 @@ const MAP_HREF = "https://maps.google.com/?q=Erode+Tamil+Nadu"; /* EDIT */
     render(lang);
   }
 
-  /* First load — default English */
+  /* boot — render English on first load */
   render('en');
 </script>
 
